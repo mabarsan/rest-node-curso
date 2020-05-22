@@ -1,5 +1,7 @@
 require('./config/config');
+const mongoose = require('mongoose');
 const express = require('express')
+
 const app = express();
 
 var bodyParser = require('body-parser');
@@ -9,36 +11,14 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(require('./config/router/usuario'));
 
-app.get('/usuario', function(req, res) {
-    res.json('Hello World GET')
+
+mongoose.set('useFindAndModify', false);
+mongoose.connect(process.env.URL_BD, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, (err, resp) => {
+    if (err) throw err;
+    console.log('Base de datos online');
 });
-
-app.post('/usuario', function(req, res) {
-
-    let body = req.body;
-
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es obligatorio'
-        })
-    } else {
-
-        res.json({
-            usuario: body
-        });
-    }
-
-});
-
-app.put('/usuario', function(req, res) {
-    res.json('Hello World PUT')
-})
-
-app.delete('/usuario', function(req, res) {
-    res.json('Hello World DELETE')
-})
 
 app.listen(process.env.PORT);
 console.log('Servidor iniciado en puerto:' + process.env.PORT);
