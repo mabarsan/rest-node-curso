@@ -34,7 +34,7 @@ let verificaAdminRole = (req, res, next) => {
 
     let usuario = req.usuario;
     console.log(usuario.role);
-    if (usuario.role === 'USER_ROLE') {
+    if (usuario.role != 'ADMIN_ROLE') {
         res.status(401).json({
             ok: false,
             error: 'Usuario sin premisos para realiza la acción solicitada'

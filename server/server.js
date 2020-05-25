@@ -1,11 +1,14 @@
 // Importaciones
 const mongoose = require('mongoose');
 const express = require('express')
+const path = require('path');
 
 //Configuración global
 require('./config/config');
 
 const app = express();
+
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 // Create application/json parser
 var bodyParser = require('body-parser');
