@@ -22,8 +22,8 @@ process.env.SEED_TOKEN = process.env.SEED_TOKEN ||  'EstaEsLaFirmaDeDesarrollo-
  *     FECHA TOKEN
  *******************/
 
-// 60 seg * 60 min * 24 h * 60 d
-process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+// 48h
+process.env.CADUCIDAD_TOKEN = '48h';
 
 if (process.env.NODE_ENV === 'dev') {
     urlDb = 'mongodb://cafe:Inovages2014@localhost:27017/cafe';
