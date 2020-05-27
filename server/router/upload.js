@@ -47,7 +47,7 @@ app.put('/upload/:tipo/:id', verificaToken, (req, res) => {
     }
 
 
-    archivo.mv(`uploads/${ tipo }/${nombreArchivo}`, (err) => {
+    archivo.mv(path.resolve(__dirname, `../../uploads/${ tipo }/${nombreArchivo}`), (err) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
